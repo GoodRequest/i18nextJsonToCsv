@@ -5,6 +5,11 @@ to CSV file and also back from CSV to JSON files.
 
 ### Implementation ###
 
+First you need to install the module as dev dependency into you project.
+```sh
+npm install --save-dev GoodRequest/i18nextJsonToCsv
+```
+
 Example of script to convert from json to csv
 ```sh
 npx convert-json-to-csv GoodRequest/i18nextJsonToCsv
