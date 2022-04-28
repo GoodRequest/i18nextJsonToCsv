@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import convertTranslationsFromJSONToCSV from './scripts/translationsJSONToCSV'
-import convertTranslationsFromCSVToJSON from './scripts/translationsCSVToJSON'
+const convertTranslationsFromJSONToCSV = require(`${process.cwd()}/scripts/translationsJSONToCSV`)
+const convertTranslationsFromCSVToJSON = require(`${process.cwd()}/scripts/translationsCSVToJSON`)
 
 // load config file
 const configFile = require(`${process.cwd()}${process.env.CONFIGPATH ? process.env.CONFIGPATH : '/config.json'}`)
