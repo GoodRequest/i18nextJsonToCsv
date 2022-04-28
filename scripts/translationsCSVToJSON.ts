@@ -47,7 +47,7 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 						// go through table columns and get text for specific language
 						forEach(rowWithoutKey, (columnText: string, index: number) => {
 							// check if language and file is selected in config
-							if ((includes(supportedLanguages, languages[index]) || !languages) && (includes(filesTypes, actualFile) || !filesTypes)) {
+							if ((includes(supportedLanguages, languages[index]) || !supportedLanguages) && (includes(filesTypes, actualFile) || !filesTypes)) {
 								// add key and column for specific language and file
 								result = {
 									...result,
