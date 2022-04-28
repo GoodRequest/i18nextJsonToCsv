@@ -1,8 +1,7 @@
 {
   "name": "convert-translations-i18next",
   "version": "1.0.0",
-  "bin": "./index.js",
-  "type": "module",
+  "bin": "./index.ts",
   "repository": "github:GoodRequest/i18nextJsonToCsv",
   "author": "Roman Haluska <roman.haluska@goodrequest.com>",
   "license": "MIT",
