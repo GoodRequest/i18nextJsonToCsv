@@ -1,6 +1,10 @@
+#!/usr/bin/env cross-env ts-node
 import fs from 'fs'
 
 import { forEach, includes } from 'lodash'
+
+// load config file
+const config = require(`${ process.env.CONFIGPATH ? process.env.CONFIGPATH : './config.json' }`)
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
@@ -88,4 +92,4 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 	}
 }
 
-export default convertTranslationsFromJSONToCSV
+convertTranslationsFromJSONToCSV(config)
