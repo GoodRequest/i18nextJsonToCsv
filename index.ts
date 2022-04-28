@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env ts-node
 import convertTranslationsFromJSONToCSV from './scripts/translationsJSONToCSV'
 import convertTranslationsFromCSVToJSON from './scripts/translationsCSVToJSON'
 
