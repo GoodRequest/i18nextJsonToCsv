@@ -1,17 +1,15 @@
 import fs from 'fs'
-const configFile = require(`${process.cwd()}${process.env.CONFIGPATH ? process.env.CONFIGPATH : '/config.json'}`)
 
 import { forEach, includes } from 'lodash'
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
-const files: any = fs.readdirSync(`${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`)
-const csvDelimiter: string = configFile?.csvDelimiter || ';'
-const supportedLanguages: string[] | null = configFile?.supportedLanguages || null
-const filesTypes: string[] | null = configFile?.filesTypes || null
-
-const convertTranslationsFromJSONToCSV = (languages: string[] | null, fileTypes: string[] | null, filePaths: any) => {
+const convertTranslationsFromJSONToCSV = (configFile: any) => {
+	const filePaths: any = fs.readdirSync(`${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`)
+	const csvDelimiter: string = configFile?.csvDelimiter || ';'
+	const languages: string[] | null = configFile?.supportedLanguages || null
+	const fileTypes: string[] | null = configFile?.filesTypes || null
 	console.log('Script ran with this configuration =>', configFile)
 	try {
 		let languageDirs: string[] = []
@@ -90,4 +88,4 @@ const convertTranslationsFromJSONToCSV = (languages: string[] | null, fileTypes:
 	}
 }
 
-convertTranslationsFromJSONToCSV(supportedLanguages, filesTypes, files)
+export default convertTranslationsFromJSONToCSV
