@@ -1,0 +1,7 @@
+{
+  "csvDelimiter": ";",
+  "filePathForGeneratedCSV": "/public/translations.csv",
+  "supportedLanguages":["sk", "cz"],
+  "filesTypes": ["loc", "paths"],
+  "pathToDirectoryForLocales": "/public/locales"
+}
