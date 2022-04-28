@@ -4,6 +4,7 @@
   "bin": "./index.ts",
   "repository": "github:GoodRequest/i18nextJsonToCsv",
   "author": "Roman Haluska <roman.haluska@goodrequest.com>",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "start": "cross-env ts-node index.ts"
