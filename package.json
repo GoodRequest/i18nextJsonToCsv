@@ -8,9 +8,6 @@
   "repository": "github:GoodRequest/i18nextJsonToCsv",
   "author": "Roman Haluska <roman.haluska@goodrequest.com>",
   "license": "MIT",
-  "scripts": {
-    "start": "cross-env ts-node index.ts"
-  },
   "dependencies": {
     "lodash": "4.17.21",
     "lodash-checkit": "2.4.1",
