@@ -5,7 +5,7 @@
     "convert-csv-to-json": "./scripts/translationsCSVToJSON.ts",
     "convert-json-to-csv": "./scripts/translationsJSONToCSV.ts"
   },
-  "repository": "github:GoodRequest/i18nextJsonToCsv",
+  "repository": "git@github.com:GoodRequest/i18nextJsonToCsv.git",
   "author": "Roman Haluska <roman.haluska@goodrequest.com>",
   "license": "MIT",
   "dependencies": {
