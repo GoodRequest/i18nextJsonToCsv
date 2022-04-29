@@ -5,7 +5,7 @@ import prettier from 'prettier'
 import { forEach, startsWith, endsWith, includes } from 'lodash'
 
 // load config file
-const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}i18JsonToCsv.config.json`)) ? `${process.cwd()}i18JsonToCsv.config.json` : '../config.json')
+const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}/i18JsonToCsv.config.json`)) ? `${process.cwd()}/i18JsonToCsv.config.json` : '../config.json')
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
