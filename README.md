@@ -41,7 +41,7 @@ Default config
   "pathToDirectoryForLocales": "/public/locales"
 }
 ```
-You can also use you own config file. But you need pass path to your config file using process environment CONFIG_PATH.
+You can also use your own config file. But you need pass path to your config file using process environment CONFIG_PATH.
 ```sh
 npx cross-env CONFIG_PATH=/scripts/configs/myConfig.json convert-csv-to-json GoodRequest/i18nextJsonToCsv
 ```
