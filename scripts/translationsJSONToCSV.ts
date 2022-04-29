@@ -4,7 +4,7 @@ import fs from 'fs'
 import { forEach, includes } from 'lodash'
 
 // load config file
-const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : '../config.json')
+const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}i18JsonToCsv.config.json`)) ? `${process.cwd()}i18JsonToCsv.config.json` : '../config.json')
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
@@ -13,7 +13,7 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 	const filePaths: any = fs.readdirSync(`${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`)
 	const csvDelimiter: string = configFile?.csvDelimiter || ';'
 	const languages: string[] | null = configFile?.supportedLanguages || null
-	const fileTypes: string[] | null = configFile?.filesTypes || null
+	const includeFiles: string[] | null = configFile?.includeFiles || null
 	console.log('Script ran with this configuration =>', configFile)
 	try {
 		let languageDirs: string[] = []
@@ -30,7 +30,7 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 				forEach(dir, (fileName: string) => {
 					const name: string = fileName?.split('.')?.[0]
 					// going through all files inside specific language directory
-					if (includes(fileTypes, name) || !fileTypes) {
+					if (includes(includeFiles, name) || !includeFiles) {
 						// load json file content
 						const fileContent: string = readFile(`${process.cwd()}/public/locales/${languageMutation}/${fileName}`, 'utf-8')
 						// get all keys for translations

@@ -5,7 +5,7 @@ import prettier from 'prettier'
 import { forEach, startsWith, endsWith, includes } from 'lodash'
 
 // load config file
-const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : '../config.json')
+const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}i18JsonToCsv.config.json`)) ? `${process.cwd()}i18JsonToCsv.config.json` : '../config.json')
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
@@ -16,7 +16,7 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 	if (fs.existsSync(filePath)) {
 		const csvDelimiter: string = configFile?.csvDelimiter || ';'
 		const supportedLanguages: string[] | null = configFile?.supportedLanguages || null
-		const filesTypes: string[] | null = configFile?.filesTypes || null
+		const includeFiles: string[] | null = configFile?.includeFiles || null
 		try {
 			const fileContent = readFile(filePath, 'utf-8')
 			// read file by lines
@@ -47,7 +47,7 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 						// go through table columns and get text for specific language
 						forEach(rowWithoutKey, (columnText: string, index: number) => {
 							// check if language and file is selected in config
-							if ((includes(supportedLanguages, languages[index]) || !supportedLanguages) && (includes(filesTypes, actualFile) || !filesTypes)) {
+							if ((includes(supportedLanguages, languages[index]) || !supportedLanguages) && (includes(includeFiles, actualFile) || !includeFiles)) {
 								// add key and column for specific language and file
 								result = {
 									...result,
