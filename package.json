@@ -1,6 +1,6 @@
 {
   "name": "convert-translations-i18next",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": {
     "convert-csv-to-json": "./scripts/translationsCSVToJSON.ts",
     "convert-json-to-csv": "./scripts/translationsJSONToCSV.ts"
