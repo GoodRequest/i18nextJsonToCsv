@@ -11,7 +11,7 @@ const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
 const convertTranslationsFromCSVToJSON = (configFile: any) => {
-	const pathToDirectoryForLocales: string = `${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
+	const pathToDirectoryForLocales: string = `${process.cwd()}${configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
 	const filePath: string = `${process.cwd()}${configFile?.filePathForGeneratedCSV ? configFile?.filePathForGeneratedCSV : '/public/translations.csv'}`
 	console.log('Script ran with this configuration =>', configFile)
 	if (fs.existsSync(filePath)) {

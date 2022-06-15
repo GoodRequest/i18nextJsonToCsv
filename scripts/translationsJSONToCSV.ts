@@ -10,7 +10,7 @@ const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
 const convertTranslationsFromJSONToCSV = (configFile: any) => {
-	const pathToDirectoryForLocales: string = `${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
+	const pathToDirectoryForLocales: string = `${process.cwd()}${configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
 	const filePaths: any = fs.readdirSync(pathToDirectoryForLocales)
 	const csvDelimiter: string = configFile?.csvDelimiter || ';'
 	const languages: string[] | null = configFile?.supportedLanguages || null
