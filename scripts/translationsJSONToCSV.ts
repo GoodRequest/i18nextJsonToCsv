@@ -10,7 +10,8 @@ const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
 const convertTranslationsFromJSONToCSV = (configFile: any) => {
-	const filePaths: any = fs.readdirSync(`${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`)
+	const pathToDirectoryForLocales: string = `${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
+	const filePaths: any = fs.readdirSync(pathToDirectoryForLocales)
 	const csvDelimiter: string = configFile?.csvDelimiter || ';'
 	const languages: string[] | null = configFile?.supportedLanguages || null
 	const includeFiles: string[] | null = configFile?.includeFiles || null
@@ -24,7 +25,7 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 		forEach(filePaths, (languageMutation: string, index: number) => {
 			// load directory for specific language and check if is
 			if (includes(languages, languageMutation) || !languages) {
-				const dir: any = fs.readdirSync(`${process.cwd()}/public/locales/${languageMutation}`)
+				const dir: any = fs.readdirSync(`${pathToDirectoryForLocales}/${languageMutation}`)
 				// add language mutation to array
 				languageDirs.push(languageMutation)
 				forEach(dir, (fileName: string) => {
@@ -32,7 +33,7 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 					// going through all files inside specific language directory
 					if (includes(includeFiles, name) || !includeFiles) {
 						// load json file content
-						const fileContent: string = readFile(`${process.cwd()}/public/locales/${languageMutation}/${fileName}`, 'utf-8')
+						const fileContent: string = readFile(`${pathToDirectoryForLocales}/${languageMutation}/${fileName}`, 'utf-8')
 						// get all keys for translations
 						const json: any = JSON.parse(fileContent)
 						// prepare loc text

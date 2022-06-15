@@ -11,6 +11,7 @@ const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
 const convertTranslationsFromCSVToJSON = (configFile: any) => {
+	const pathToDirectoryForLocales: string = `${process.cwd()}${ configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
 	const filePath: string = `${process.cwd()}${configFile?.filePathForGeneratedCSV ? configFile?.filePathForGeneratedCSV : '/public/translations.csv'}`
 	console.log('Script ran with this configuration =>', configFile)
 	if (fs.existsSync(filePath)) {
@@ -73,13 +74,13 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 				const fileKeys = Object.keys(result[languagesKey])
 				forEach(fileKeys, (fileKey: string) => {
 					// check if directory for language exist
-					if (!fs.existsSync(`${process.cwd()}/public/locales/${languagesKey}`)){
+					if (!fs.existsSync(`${pathToDirectoryForLocales}/${languagesKey}`)){
 						// create directory if not exist
-						fs.mkdirSync(`${process.cwd()}/public/locales/${languagesKey}`)
+						fs.mkdirSync(`${pathToDirectoryForLocales}/${languagesKey}`)
 					}
 					// write parsed data to file
 					const fileContent: string = prettier.format(JSON.stringify(result[languagesKey][fileKey]),{ semi: true, parser: 'json' })
-					writeFile(`${process.cwd()}/public/locales/${languagesKey}/${fileKey}.json`, fileContent,'utf8')
+					writeFile(`${pathToDirectoryForLocales}/${languagesKey}/${fileKey}.json`, fileContent,'utf8')
 				})
 			})
 			console.log('Detected languages: ', languages, ' | ', 'Detected files: ', files)
