@@ -1,6 +1,6 @@
 {
   "name": "@goodrequest/convert-translations-i18next",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "convert-csv-to-json": "./dist/translationsCSVToJSON.js",
     "convert-json-to-csv": "./dist/translationsJSONToCSV.js"
