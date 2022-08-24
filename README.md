@@ -7,16 +7,16 @@ to CSV file and also back from CSV to JSON files.
 
 First you need to install the module as dev dependency into you project.
 ```sh
-npm install --save-dev GoodRequest/i18nextJsonToCsv
+npm install --save-dev @goodrequest/convert-translations-i18next
 ```
 
 Example of script to convert from json to csv
 ```sh
-npx convert-json-to-csv GoodRequest/i18nextJsonToCsv
+npx convert-json-to-csv @goodrequest/convert-translations-i18next
 ```
 Example of script to convert back from csv to json
 ```sh
-npx convert-csv-to-json GoodRequest/i18nextJsonToCsv
+npx convert-csv-to-json @goodrequest/convert-translations-i18next
 ```
 This is what a config file looks like
 ```
