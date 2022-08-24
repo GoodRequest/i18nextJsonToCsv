@@ -1,4 +1,3 @@
-#!/usr/bin/env cross-env ts-node
 import fs from 'fs'
 
 import { forEach, includes } from 'lodash'

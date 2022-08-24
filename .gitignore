@@ -1,3 +1,11 @@
-node_modules/
-package-lock.json
+/node_modules
+/logs
+/coverage
+/temp
+dist
+.vscode
+.env
 .idea
+yarn.lock
+yarn-error.log
+package-lock.json
