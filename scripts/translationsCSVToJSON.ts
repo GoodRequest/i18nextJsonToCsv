@@ -2,7 +2,10 @@
 import fs from 'fs'
 import prettier from 'prettier'
 
-import { forEach, startsWith, endsWith, includes } from 'lodash'
+import { forEach, includes, isEmpty } from 'lodash'
+
+// types
+import { IJsonToCsvConfig } from '../interfaces'
 
 // load config file
 const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}/i18JsonToCsv.config.json`)) ? `${process.cwd()}/i18JsonToCsv.config.json` : '../config.json')
@@ -10,7 +13,7 @@ const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
-const convertTranslationsFromCSVToJSON = (configFile: any) => {
+const convertTranslationsFromCSVToJSON = (configFile: IJsonToCsvConfig) => {
 	const pathToDirectoryForLocales: string = `${process.cwd()}${configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
 	const filePath: string = `${process.cwd()}${configFile?.filePathForGeneratedCSV ? configFile?.filePathForGeneratedCSV : '/public/translations.csv'}`
 	console.log('Script ran with this configuration =>', configFile)
@@ -29,15 +32,14 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 				// first line get language mutations
 				if (index === 0) {
 					forEach(text.split(csvDelimiter), (language: string, lanIndex: number) => {
-						if (lanIndex > 0) {
+						if (lanIndex > 0 && !isEmpty(language.trim())) {
 							languages.push(language.trim())
 						}
 					})
 				} else {
 					// check if is new file "--<<fileName>>--"
-					if (startsWith(text, '--') && endsWith(text, '--')) {
-						// replace identifier '--' for new file
-						const fileName = text.replace(/--/gm, '')
+					const fileName = text.match(/(?<=--)(.*?)(?=--)/gm)?.[0]
+					if (fileName && !isEmpty(fileName)) {
 						files.push(fileName)
 						// save actual file name
 						actualFile = fileName
