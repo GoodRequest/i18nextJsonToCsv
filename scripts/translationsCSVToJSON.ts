@@ -4,16 +4,13 @@ import prettier from 'prettier'
 
 import { forEach, includes, isEmpty } from 'lodash'
 
-// types
-import { IJsonToCsvConfig } from '../interfaces'
-
 // load config file
 const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}/i18JsonToCsv.config.json`)) ? `${process.cwd()}/i18JsonToCsv.config.json` : '../config.json')
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
-const convertTranslationsFromCSVToJSON = (configFile: IJsonToCsvConfig) => {
+const convertTranslationsFromCSVToJSON = (configFile: any) => {
 	const pathToDirectoryForLocales: string = `${process.cwd()}${configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
 	const filePath: string = `${process.cwd()}${configFile?.filePathForGeneratedCSV ? configFile?.filePathForGeneratedCSV : '/public/translations.csv'}`
 	console.log('Script ran with this configuration =>', configFile)

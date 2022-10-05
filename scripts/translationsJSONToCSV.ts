@@ -3,16 +3,13 @@ import fs from 'fs'
 
 import { forEach, includes } from 'lodash'
 
-// types
-import { IJsonToCsvConfig } from '../interfaces'
-
 // load config file
 const config = require(process.env.CONFIG_PATH ? `${process.cwd()}${process.env.CONFIG_PATH}` : (fs.existsSync(`${process.cwd()}/i18JsonToCsv.config.json`)) ? `${process.cwd()}/i18JsonToCsv.config.json` : '../config.json')
 
 const readFile: any = fs.readFileSync
 const writeFile: any = fs.writeFileSync
 
-const convertTranslationsFromJSONToCSV = (configFile: IJsonToCsvConfig) => {
+const convertTranslationsFromJSONToCSV = (configFile: any) => {
 	const pathToDirectoryForLocales: string = `${process.cwd()}${configFile?.pathToDirectoryForLocales ? configFile?.pathToDirectoryForLocales : '/public/locales'}`
 	const filePaths: any = fs.readdirSync(pathToDirectoryForLocales)
 	const csvDelimiter: string = configFile?.csvDelimiter || ';'
