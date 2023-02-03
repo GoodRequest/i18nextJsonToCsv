@@ -15,7 +15,7 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 	const csvDelimiter: string = configFile?.csvDelimiter || ';'
 	const languages: string[] | null = configFile?.supportedLanguages || null
 	const includeFiles: string[] | null = configFile?.includeFiles || null
-	console.log('Script ran with this configuration =>', configFile)
+	console.log('Script ran with this configuration =>', configFile, '\n')
 	try {
 		let languageDirs: string[] = []
 		let locKeys: any = {}
@@ -87,7 +87,7 @@ const convertTranslationsFromJSONToCSV = (configFile: any) => {
 		})
 		// write data into csv buffer
 		writeFile(`${process.cwd()}${ configFile?.filePathForGeneratedCSV ? configFile?.filePathForGeneratedCSV : '/public/translations.csv'}`, buffer)
-		console.log('Data generated into csv file successfully!')
+		console.log('\x1B[32mData generated into csv file successfully!')
 	} catch (error: any) {
 		console.error(error)
 	}
