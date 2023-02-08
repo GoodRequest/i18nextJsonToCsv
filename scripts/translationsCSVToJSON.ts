@@ -42,8 +42,8 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 						actualFile = fileName
 					} else {
 						const locKey = text.split(csvDelimiter)?.[0]?.trim()
-						// skip first column in row with loc key
-						const [firstColumn, ...rowWithoutKey]: string[] = text.split(csvDelimiter)
+						// skip first column with locKey and empty columns in row
+						const rowWithoutKey: string[] = text.split(csvDelimiter)?.splice(1, languages.length)
 						// go through table columns and get text for specific language
 						forEach(rowWithoutKey, (columnText: string, index: number) => {
 							// get variables for translation key
@@ -61,7 +61,7 @@ const convertTranslationsFromCSVToJSON = (configFile: any) => {
 								})
 							}
 							// check if language and file is selected in config
-							if ((includes(supportedLanguages, languages[index]) || !supportedLanguages) && (includes(includeFiles, actualFile) || !includeFiles)) {
+							if ((includes(supportedLanguages, languages[index]) || !supportedLanguages) && (includes(includeFiles, actualFile) || !includeFiles) && !isEmpty(locKey)  && languages[index]) {
 								// add key and column for specific language and file
 								result = {
 									...result,
